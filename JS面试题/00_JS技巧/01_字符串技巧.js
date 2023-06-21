@@ -12,6 +12,7 @@ const money = ThousandNum(20191012)     // 20,191,012
 //3,生成随机ID
 const RandomId = len => Math.random().toString(36).substr(3, len)
 const id = RandomId(10) //随机生成十位数id
+console.log(id);
 
 //4,生成随机HEX色值
 const RandomColor = () => "#" + Math.floor(Math.random() * 0xffffff).toString(16).padEnd(6, "0");
@@ -22,7 +23,8 @@ const StartScore = rate => "★★★★★☆☆☆☆☆".slice(5 - rate, 10 -
 const start = StartScore(4);
 console.log(start)
 
-//操作URL查询参数
+//6,操作URL查询参数
 const params = new URLSearchParams(location.search.replace(/\?/ig, "")); // location.search = "?name=young&sex=male"
 params.has("young"); // true
 params.get("sex"); // "male"
+
