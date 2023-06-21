@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件的节流（throttle）与防抖（debounce）</title>
+</head>
+
+<body>
+    <script>
+        //有些浏览器事件可以在短时间内触发多次(窗口大小调整、页面滚动等)
+        //务必提及 防抖(Debouncing) 和 函数节流（Throttling）来提升页面速度和性能。
+        // 这两兄弟的本质都是以闭包的形式存在。通过对事件对应的回调函数进行包裹、以自由
+        // 量的形式缓存时间信息，最后用 setTimeout 来控制事件的触发频率。
+
+        // Throttle:节流，第一个人说了算,某时间段内再次响应不予触发
+        function throttle(fn, interval) {   //fn:包装的事件回调，interval：间隔时间阈值
+            // last 为上一次触发回调的时间
+            let last = 0
+
+            //将throttle处理结果当做函数返回  
+            return function () {
+                let context = this
+                let args = arguments
+                let now = +new Date()
+
+                //判断
+                if (now - last >= interval) {
+                    //时间间隔大于我们设定的阈值，可以回调
+                    last = now
+                    fn.apply(context, args)
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

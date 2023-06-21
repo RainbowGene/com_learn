@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //闭包：在内部函数中可以访问其范围之外的变量
+        //题：编写一个函数，该函数将遍历整数列表，并在延迟3秒后打印每个元素的索引。
+
+        //错误写法:
+        const arr = [10, 12, 15, 21]
+        for (var i = 0; i < arr.length; i++) {
+            setTimeout(function () {
+                console.log(i)  //打印 4，4，4，4
+            }, 3000)
+        }
+
+        // 解析：因为 setTimeout 函数创建了一个可以访问其外部作用域的函数（闭包），
+        // 该作用域是包含索引 i 的循环。 经过 3 秒后，执行该函数并打印出 i 的值，该值
+        // 在循环结束时为 4，因为它循环经过0,1,2,3,4并且循环最终停止在 4。
+
+        //1:var 改为 let
+    </script>
+</body>
+
+</html>

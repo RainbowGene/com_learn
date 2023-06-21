@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件委托代理</title>
+</head>
+
+<body>
+    <ul id="todo-app">
+        <li class="item">Walk the dog</li>
+        <li class="item">Pay bills</li>
+        <li class="item">Make dinner</li>
+        <li class="item">Code for one hour</li>
+    </ul>
+
+    <script>
+        //常规：将事件绑定到元素
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     let app = document.getElementById('todo-app')
+        //     let itmes = app.getElementsByClassName('item')
+
+        //     for (let item of itmes) {
+        //         item.addEventListener('click', function () {
+        //             alert('你点击了 ' + item.innerHTML)
+        //         })
+        //     }
+        // })
+
+        //当li足够多，以上方法效率低下
+        //更有效的解决方案是将一个事件侦听器实际绑定到整个容器，然后在单击它时能够访问每个列表项， 这称为 事件委托
+        document.addEventListener('DOMContentLoaded', function () {
+            let app = document.getElementById('todo-app');
+
+            app.addEventListener('click', function (e) {
+                if (e.target && e.target.nodeName === 'LI') {
+                    let item = e.target;
+                    console.log('你点击了 ' + item.innerHTML)
+                }
+            })
+        })
+
+        /*
+            DOMContentLoaded:Html文档被完全加载解析完成后触发,无须等待样式表、图像和子框架是否完全加载
+            load:检测一个完全加载的页面
+            
+            / console.log(e)  //not available  无法使用
+            // console.log(e.target)   //target 事件属性可返回事件的目标节点（触发该事件的节点），如生成事件的元素、文档或窗口。
+            // console.log(e.target.nodeName)
+        */
+    </script>
+</body>
+
+</html>
